@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RBK Edutech Certificate Verify</title>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial,sans-serif; background:#eef2f3; padding:20px; }
+    .c { max-width:600px; margin:auto; background:#fff; padding:20px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+    input,button { width:100%; padding:12px; margin-top:10px; border-radius:5px; border:1px solid #ccc; font-size:16px; }
+    button { background:#0288d1; color:white; border:none; cursor:pointer; }
+    .res { margin-top:20px; font-size:16px; }
+    .ok { color:green; font-weight:bold; }
+    .err { color:red; font-weight:bold; }
+  </style>
+</head>
+<body><div class="c">
+    <h2 style="text-align:center">RBK Edutech Certificate Verify</h2>
+    <input id="certNo" placeholder="Certificate No: RBK/2025/WIR001">
+    <button id="btn">Verify</button>
+    <div id="result" class="res"></div>
+</div>
+<script>
+  document.getElementById('btn').onclick = function(){
+    const cert = document.getElementById('certNo').value.trim();
+    const out = document.getElementById('result');
+    const data = {
+      "RBK/2025/WIR001": {
+        name:"Raja Babu Kumar",roll:"411142023410",
+        intern:"Residential Electrical Wiring & Load Distribution",
+        dur:"25 March 2025 – 21 April 2025",
+        by:"RBK Edutech Centre, Muzaffarpur, Bihar"
+      }
+    };
+    if(data[cert]){
+      const d = data[cert];
+      out.innerHTML = `<div class="ok">✅ Verified Certificate</div>
+        <p><strong>Name:</strong> ${d.name}</p>
+        <p><strong>Roll No.:</strong> ${d.roll}</p>
+        <p><strong>Internship:</strong> ${d.intern}</p>
+        <p><strong>Duration:</strong> ${d.dur}</p>
+        <p><strong>Issued by:</strong> ${d.by}</p>`;
+    } else out.innerHTML = `<div class="err">❌ Certificate not found.</div>`;
+  };
+</script></body>
+</html>
